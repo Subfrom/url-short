@@ -24,7 +24,17 @@ class UrlController extends Controller
      */
     public function index()
     {
-        return view('urls.index', ['urls' => Url::orderBy('id', 'DESC')->paginate(10), 'user' => auth()->user()]);
+        $user = auth()->user();
+
+        if($user->hasRole('Super Admin')){
+            $urls = Url::orderBy('id', 'DESC')->paginate(10);
+
+            return view('urls.index', compact('urls', 'user'));
+        }else{
+            $urls = Url::where('user_id', $user->id)->orderBy('id', 'DESC')->paginate(10);
+
+            return view('urls.index', compact('urls', 'user'));
+        }
     }
 
     /**
