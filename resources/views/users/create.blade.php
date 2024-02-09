@@ -60,13 +60,13 @@
                                 @forelse ($roles as $role)
 
                                     @if ($role!='Super Admin')
-                                        <option value="{{ $role }}" {{ in_array($role, old('roles') ?? []) ? 'selected' : '' }}>
-                                        {{ $role }}
+                                        <option value="{{ $role->id }}" {{ in_array($role->id, old('roles') ?? []) ? 'selected' : '' }}>
+                                        {{ $role->name }}
                                         </option>
                                     @else
                                         @if (Auth::user()->hasRole('Super Admin'))   
-                                            <option value="{{ $role }}" {{ in_array($role, old('roles') ?? []) ? 'selected' : '' }}>
-                                            {{ $role }}
+                                            <option value="{{ $role->id }}" {{ in_array($role->id, old('roles') ?? []) ? 'selected' : '' }}>
+                                            {{ $role->name }}
                                             </option>
                                         @endif
                                     @endif
