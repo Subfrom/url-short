@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                 <th scope="col">S#</th>
-                <th scope="col">Name</th>
+                <th scope="col">UserName</th>
                 <th scope="col">Email</th>
                 <th scope="col">Roles</th>
                 <th scope="col">Action</th>
@@ -22,7 +22,7 @@
                 @forelse ($users as $user)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->username }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
                         @forelse ($user->getRoleNames() as $role)

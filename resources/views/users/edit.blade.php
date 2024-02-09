@@ -18,11 +18,11 @@
                     @method("PUT")
 
                     <div class="mb-3 row">
-                        <label for="name" class="col-md-4 col-form-label text-md-end text-start">Name</label>
+                        <label for="username" class="col-md-4 col-form-label text-md-end text-start">UserName</label>
                         <div class="col-md-6">
-                          <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="username" value="{{ $user->name }}">
-                            @if ($errors->has('name'))
-                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                          <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ $user->username }}">
+                            @if ($errors->has('username'))
+                                <span class="text-danger">{{ $errors->first('username') }}</span>
                             @endif
                         </div>
                     </div>
@@ -57,16 +57,17 @@
                     <div class="mb-3 row">
                         <label for="roles" class="col-md-4 col-form-label text-md-end text-start">Roles</label>
                         <div class="col-md-6">           
+                            
                             <select class="form-select @error('roles') is-invalid @enderror" multiple aria-label="Roles" id="roles" name="roles[]">
                                 @forelse ($roles as $role)
 
                                     @if ($role!='Super Admin')
-                                    <option value="{{ $role }}" {{ in_array($role, $userRoles ?? []) ? 'selected' : '' }}>
+                                    <option value="{{ $role }}" {{ in_array($role, $userRole ?? []) ? 'selected' : '' }}>
                                         {{ $role }}
                                     </option>
                                     @else
                                         @if (Auth::user()->hasRole('Super Admin'))   
-                                        <option value="{{ $role }}" {{ in_array($role, $userRoles ?? []) ? 'selected' : '' }}>
+                                        <option value="{{ $role }}" {{ in_array($role, $userRole ?? []) ? 'selected' : '' }}>
                                             {{ $role }}
                                         </option>
                                         @endif
