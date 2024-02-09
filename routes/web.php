@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UrlController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -26,5 +27,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resources([
     'roles' => RoleController::class,
     'users' => UserController::class,
+    'urls' => UrlController::class,
     // 'urls' => UrlController::class,
 ]);
+
+Route::get('{short_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
